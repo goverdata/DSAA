@@ -27,9 +27,9 @@ public class BTreePrinter {
 		List<BNode<T>> newBNodes = new ArrayList<BNode<T>>();
 		for (BNode<T> BNode : BNodes) {
 			if (BNode != null) {
-				System.out.print(BNode.data);
-				newBNodes.add(BNode.left);
-				newBNodes.add(BNode.right);
+				System.out.print(BNode.getData());
+				newBNodes.add(BNode.getLeft());
+				newBNodes.add(BNode.getRight());
 			} else {
 				newBNodes.add(null);
 				newBNodes.add(null);
@@ -49,14 +49,14 @@ public class BTreePrinter {
 					continue;
 				}
 
-				if (BNodes.get(j).left != null)
+				if (BNodes.get(j).getLeft() != null)
 					System.out.print("/");
 				else
 					BTreePrinter.printWhitespaces(1);
 
 				BTreePrinter.printWhitespaces(i + i - 1);
 
-				if (BNodes.get(j).right != null)
+				if (BNodes.get(j).getRight() != null)
 					System.out.print("\\");
 				else
 					BTreePrinter.printWhitespaces(1);
@@ -77,8 +77,8 @@ public class BTreePrinter {
 	private static <T extends Comparable<?>> int maxLevel(BNode<T> BNode) {
 		if (BNode == null)
 			return 0;
-		return Math.max(BTreePrinter.maxLevel(BNode.left),
-				BTreePrinter.maxLevel(BNode.right)) + 1;
+		return Math.max(BTreePrinter.maxLevel(BNode.getLeft()),
+				BTreePrinter.maxLevel(BNode.getRight())) + 1;
 	}
 
 	private static <T> boolean isAllElementsNull(List<T> list) {
