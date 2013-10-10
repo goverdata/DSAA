@@ -14,23 +14,32 @@ public class RBTree implements Tree {
 	RBNode root = null;
 
 	/**
-	 * µ±ÔÚÄ³¸ö½áµãpivotÉÏ£¬×ö×óÐý²Ù×÷Ê±£¬ÎÒÃÇ¼ÙÉèËüµÄÓÒº¢×Óy²»ÊÇNIL[T]£¬
-	 * pivot¿ÉÒÔÎªÊ÷ÄÚÈÎÒâÓÒº¢×Ó¶ø²»ÊÇNIL[T]µÄ½áµã¡£
-	 * ×óÐýÒÔpivotµ½yÖ®¼äµÄÁ´Îª¡°Ö§Öá¡±½øÐÐ£¬ËüÊ¹y³ÉÎª¸Ãº¢×ÓÊ÷ÐÂµÄ¸ù£¬
-	 * ¶øyµÄ×óº¢×ÓbÔò³ÉÎªpivotµÄÓÒº¢×Ó¡£
+	 * ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½pivotï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½NIL[T]ï¿½ï¿½
+	 * pivotï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òºï¿½ï¿½Ó¶ï¿½ï¿½ï¿½NIL[T]ï¿½Ä½ï¿½ã¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pivotï¿½ï¿½yÖ®ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ö§ï¿½á¡±ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Ê¹yï¿½ï¿½Îªï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¸ï¿½
+	 * ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½ï¿½Îªpivotï¿½ï¿½ï¿½Òºï¿½ï¿½Ó¡ï¿½
 	 * */
 	void leftRotate(RBNode pivotNode) {
-		if(pivotNode == null ||pivotNode.getRight() == null){
+		if (pivotNode == null || pivotNode.getRight() == null) {
 			return;
 		}
-		
+
 		RBNode temp = (RBNode) pivotNode.getRight();
-		
+
 		pivotNode.setRight(temp.getLeft());
 		temp.getLeft().setParent(pivotNode);
+
+		temp.setParent(pivotNode.getParent());
+		if (pivotNode.getParent() == null) {
+			root = temp;
+		} else if (pivotNode == pivotNode.getParent().getRight()) {
+			pivotNode.getParent().setRight(temp);
+		} else {
+			pivotNode.getParent().setLeft(temp);
+		}
 		
-		
-		
+		pivotNode.setParent(temp);
+		temp.setLeft(pivotNode);
 	}
 
 	void rightRotate(RBNode pivotNode) {
