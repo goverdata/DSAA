@@ -112,7 +112,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
 	 * @param key
 	 * @param value
 	 * @param ht
-	 * @return
+	 * @return the split node
 	 */
 	private Node insert(Node parentNode, Key key, Value value, int ht) {
 		int j;
@@ -129,11 +129,12 @@ public class BTree<Key extends Comparable<Key>, Value> {
 			// internal node
 			for (j = 0; j < parentNode.m; j++) {
 				if ((j + 1 == parentNode.m) || less(key, parentNode.children[j + 1].key)) {
-					Node u = insert(parentNode.children[j++].next, key, value, ht - 1);
-					if (u == null)
+					Node splitNode = insert(parentNode.children[j++].next, key, value, ht - 1);
+					if (splitNode == null){
 						return null;
-					t.key = u.children[0].key;
-					t.next = u;
+					}
+					t.key = splitNode.children[0].key;
+					t.next = splitNode;
 					break;
 				}
 			}
