@@ -93,6 +93,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
 	public void put(Key key, Value value) {
 		Node u = insert(root, key, value, HT);
 		N++;
+		// 刚好插入结点而不需要分裂，则完成一次插入操作并返回
 		if (u == null) {
 			return;
 		}
@@ -151,6 +152,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
 	}
 
 	// split node in half
+	// 分裂结点，并将分裂出的中间结点向上弹出
 	private Node split(Node h) {
 		Node t = new Node(M / 2);
 		h.m = M / 2;
