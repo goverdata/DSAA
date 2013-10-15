@@ -1,4 +1,4 @@
-package com.github.dsaa.tree.btree;
+package com.github.dsaa.tree.binary;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.github.dsaa.tree.redblack;
+package com.github.dsaa.tree.binary.redblack;
 
-import com.github.dsaa.tree.btree.BNode;
+import com.github.dsaa.tree.binary.BNode;
 
 public class RBNode<T extends Comparable<?>> extends BNode{
 	public static final int RED = 0;

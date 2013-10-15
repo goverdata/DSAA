@@ -1,4 +1,4 @@
-package com.github.dsaa.tree.redblack;
+package com.github.dsaa.tree.binary.redblack;
 
 import com.github.dsaa.tree.Node;
 import com.github.dsaa.tree.Tree;
