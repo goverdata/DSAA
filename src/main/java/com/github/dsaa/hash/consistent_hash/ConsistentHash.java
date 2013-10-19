@@ -25,6 +25,9 @@ public class ConsistentHash {
 		shards.add("192.168.0.4-服务器4");
 
 		nodes = new TreeMap<Long, Object>();
+		//for (Object shardInfo : shards) {
+		//Object shardInfo = shards.get(i);
+		//for (int j = 0; j < VIRTUAL_NUM; j++) {
 		for (int i = 0; i < shards.size(); i++) {
 			Object shardInfo = shards.get(i);
 			for (int j = 0; j < VIRTUAL_NUM; j++) {
@@ -102,12 +105,19 @@ public class ConsistentHash {
 		h.init();
 		h.printMap();
 		// 循环50次，是为了取50个数来测试效果，当然也可以用其他任何的数据来测试
-		for (int i = 0; i < 50; i++) {
-			System.out
-					.println(h.getShardInfo(h.hash(
-							h.computeMd5(String.valueOf(i)),
-							ran.nextInt(h.VIRTUAL_NUM))));
-		}
+		// for (int i = 0; i < 50; i++) {
+		// System.out
+		// .println(h.getShardInfo(h.hash(
+		// h.computeMd5(String.valueOf(i)),
+		// ran.nextInt(h.VIRTUAL_NUM))));
+		// }
+
+		System.out.println(h.getShardInfo(h.hash(
+				h.computeMd5(String.valueOf(5)), 0)));
+
+		System.out.println(h.getShardInfo(h.hash(
+				h.computeMd5(String.valueOf(5)), 2)));
+
 	}
 
 }
